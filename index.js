@@ -1,41 +1,48 @@
 class hero {
-    constructor(name, age, type) {
-        
+    constructor(name, age, type, attack) {
+
         this.name = name
         this.age = age
         this.type = type
+        this.executeAttack = attack
 
         console.log(`Usuário: ${name} - idade: ${age}`);
     }
 
-    action(type){
-        switch (type) {
-            case "mago": return "magia"
-                
-            case "guerreiro": return "espada";
-                
-            case "monge": return "artes marciais";
-                
-            case "ninja": return "shuriken";
-                
-        }
-    }
-    attack(action) {
-      
-           console.log(`O ${this.type} atacou usando ${action}`);
+    attack() {
+
+        console.log(`O ${this.type} atacou usando ${this.executeAttack}`);
     }
 
 }
-let indexHero = Math.floor(Math.random() * 4)
 
-let typeOfHero = ["mago", "guerreiro", "monge", "ninja"]
+function createType() {
+    let indexHero = Math.floor(Math.random() * 4)
 
-let type = typeOfHero[indexHero]
+    let typeOfHero = ["mago", "guerreiro", "monge", "ninja"]
 
-//function 
+    let createdHero = typeOfHero[indexHero]
 
+    return createdHero
+}
 
-let hero1 = new hero("Rael", 30, type)
+let createdHero = createType()
+
+function action(createdHero) {
+    switch (createdHero) {
+        case "mago": return "magia";
+
+        case "guerreiro": return "espada";
+
+        case "monge": return "artes marciais";
+
+        case "ninja": return "shuriken";
+    }
+
+}
+
+let actionOfAttack = action(createdHero)
+
+let hero1 = new hero("Rael", 30, createdHero, actionOfAttack)
 
 hero1.attack()
-
